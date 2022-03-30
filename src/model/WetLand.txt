@@ -1,0 +1,195 @@
+package model;
+
+public class WetLand {
+	
+	private int wetArea;
+	private int wetUbiType;
+	private String wetlandID; 
+	private String wetPhoto; 
+	private String wetName;
+	private String place; 
+	private boolean priv; 
+	private boolean protectedArea;
+	private double goalPercentage;
+	private Fauna[] animals;
+	private Flora[] plants;
+	private Event[] events;
+	
+	public WetLand (int wetArea, int wetUbiType, String wetlandID, String wetPhoto, String wetName, String place, boolean priv, boolean protectedArea, double goalPercentage) {
+		
+		this.goalPercentage = goalPercentage;
+		this.place = place;
+		this.priv = priv;
+		this.protectedArea = protectedArea;
+		this.wetlandID = wetlandID;
+		this.wetUbiType = wetUbiType;
+		this.wetArea = wetArea;
+		this.wetName = wetName;
+		this.wetPhoto = wetPhoto;
+		animals = new Fauna[20];
+		plants = new Flora[20];
+		events = new Event[20];
+		
+	}
+	
+	public String addFauna (String speciesName, String cientificName, boolean mig, int faunaType) {
+		
+		boolean fin = false; 
+		
+		String msg = "";
+		
+		Fauna myFauna = new Fauna(speciesName, cientificName, mig, faunaType);
+		
+		for (int i = 0; i < animals.length && !fin; i++) {
+			
+			if (animals[i] == null) {
+				
+				animals[i] = myFauna;
+				fin = true;
+				
+				msg = "The animal was correctly added";
+				
+			}
+			
+		}
+		
+		if (fin == false) {
+			
+			msg = "The animal cannot be added";
+			
+		}
+		
+		return msg;
+		
+	}
+	
+	public String addFlora (String speciesName, String cientificName, boolean mig, int floraType) {
+		
+		boolean fin = false; 
+		
+		String msg = "";
+		
+		Flora myFlora = new Flora(speciesName, cientificName, mig, floraType);
+		
+		for (int i = 0; i < plants.length && !fin; i++) {
+			
+			if (plants[i] == null) {
+				
+				plants[i] = myFlora;
+				fin = true;
+				
+				msg = "The plant was correctly added";
+				
+			}
+			
+		}
+		
+		if (fin == false) {
+			
+			msg = "The plant cannot be added";
+			
+		}
+		
+		return msg;
+		
+	}
+	
+	public 	String addEvent (String hostname, double value, String description, int year, int month, int day, int eventType) {
+		
+		boolean fin = false; 
+		String msg = ".";
+		
+		Event myEvent = new Event(year, month, day, description, value, hostname, eventType);
+		
+		for (int i = 0; i < events.length && !fin; i++) {
+			
+			if (events [i] == null) {
+				
+				events[i] = myEvent;
+				fin = true;
+				
+				msg = "The Event was added successfull";
+				
+			}
+			
+		}
+		
+		return msg;
+		
+	}
+	
+	public int getWetUbiType() {
+		return wetUbiType;
+	}
+
+	public void setWetUbiType(int wetUbiType) {
+		this.wetUbiType = wetUbiType;
+	}
+
+	public int getWetArea() {
+		return wetArea;
+	}
+
+	public void setWetArea(int wetArea) {
+		this.wetArea = wetArea;
+	}
+
+	public String getWetlandID() {
+		return wetlandID;
+	}
+
+	public void setWetlandID(String wetlandID) {
+		this.wetlandID = wetlandID;
+	}
+
+	public String getWetPhoto() {
+		return wetPhoto;
+	}
+
+	public void setWetPhoto(String wetPhoto) {
+		this.wetPhoto = wetPhoto;
+	}
+
+	public String getWetName() {
+		return wetName;
+	}
+
+	public void setWetName(String wetName) {
+		this.wetName = wetName;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public boolean isPriv() {
+		return priv;
+	}
+
+	public void setPriv(boolean priv) {
+		this.priv = priv;
+	}
+
+	public boolean isProtectedArea() {
+		return protectedArea;
+	}
+
+	public void setProtectedArea(boolean protectedArea) {
+		this.protectedArea = protectedArea;
+	}
+
+	public double getGoalPercentage() {
+		return goalPercentage;
+	}
+
+	public void setGoalPercentage(double goalPercentage) {
+		this.goalPercentage = goalPercentage;
+	}
+	
+	
+
+}
