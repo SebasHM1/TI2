@@ -3,7 +3,7 @@ package ui;
 import model.Controller;
 import java.util.Scanner;
 
-public class Wetland {
+public class Main {
 
 	public static Scanner sc; 
 	public static Controller controller; 
@@ -15,12 +15,28 @@ public class Wetland {
 		
 	}
 	
+	/**
+	 <pre>
+	 *<strong>Descripcion:</strong> This method inicialices the global variables
+	 *pre: sc and controller should be declared 
+	 *pos: sc and controller are inicialiced 
+	 </pre>
+	 */
+	
 	public static void init () {
 		
 		sc = new Scanner(System.in);
 		controller = new Controller(); 
 		
 	}
+	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong>  This method shows the program's menu 
+	 *pre: global variables sould be inicialiced
+	 *pos: no
+	 * </pre>
+	 */
 	
 	public static void menu () {
 		
@@ -39,7 +55,9 @@ public class Wetland {
 			System.out.println("5) Check the number of maintenance in a year for each wetland");
 			System.out.println("6) Check the wetland by specie");
 			System.out.println("7) Show all the Wetlands, Species and Events");
-			System.out.println("8) Exit");
+			System.out.println("8) Show the Wetlan with more fauna");
+			System.out.println("9) Show the Wetlan with less flora");
+			System.out.println("10) Exit");
 			
 			opt = sc.nextInt();
 			
@@ -71,7 +89,7 @@ public class Wetland {
 				break;
 					
 				case 6: 
-				registerFauna();
+				check();
 
 				break;	
 					
@@ -81,9 +99,19 @@ public class Wetland {
 				break;
 		
 				case 8:
+				moreFauna();
+				
+				break;
+				
+				case 9: 
+				lessFlora();
+				
+				break;
+				
+				case 10: 
 					
 					System.out.println("Thanks for using");
-					fin = true; 
+					fin = true;
 					break;
 					
 				default: 
@@ -96,6 +124,15 @@ public class Wetland {
 		}
 		
 	}
+	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method allows the user to create a wetland object by show a menu to thisone. 
+	 *pre: global variables sould be inicialiced
+	 *pos: Call the method createWetland at Controller 
+	 * </pre>
+	 */
+
 	
 	public static void registerWetland() {
 		
@@ -221,6 +258,14 @@ public class Wetland {
 		System.out.println(msg);
 		
 	}
+	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method allows the user to create a fauna object by show a menu to thisone. 
+	 *pre: Object wetland should be created and global variables must be inicialiced
+	 *pos: Call the method createFauna at Controller 
+	 * </pre>
+	 */
 
 	public static void registerFauna() {
 		
@@ -242,8 +287,6 @@ public class Wetland {
 			System.out.println("Type the cientific name");
 			
 			String cientificName = sc.next();
-			
-			System.out.println("Type the cientific name");
 			
 			while (!migComp) {
 				
@@ -287,6 +330,14 @@ public class Wetland {
 		
 	}
 	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method allows the user to create a flora object by show a menu to thisone. 
+	 *pre: Object wetland should be created and global variables must be inicialiced
+	 *pos: Call the method createFlora at Controller 
+	 * </pre>
+	 */
+	
 	public static void registerFlora() {
 		
 		
@@ -311,7 +362,7 @@ public class Wetland {
 			
 			while (!migComp) {
 				
-				System.out.println("If is a migratory specie, type 1, if it is not, type 2");
+				System.out.println("If the wetland is protected, type 1, if it is not, type 2");
 			
 				int migCompNum = sc.nextInt();
 				
@@ -348,6 +399,14 @@ public class Wetland {
 		}
 		
 	}
+	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method allows the user to create a event object by show a menu to thisone. 
+	 *pre: Object wetland should be created and global variables must be inicialiced
+	 *pos: Call the method createEvent at Controller 
+	 * </pre>
+	 */
 	
 	public static void registerEvent () {
 		
@@ -396,27 +455,147 @@ public class Wetland {
 		
 	}
 	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method shows the user all the objects created except by the event's 
+	 pre: Object wetland should be created and global variables must be inicialiced
+	 pos: Shows the methods showWetlands, showAnimals and showPlants at Controller 
+	 * </pre>
+	 */
+	
 	public static void showAll () {
 		
-		System.out.println(controller.showWetlands());
-		System.out.println(controller.showAnimals());
-		System.out.println(controller.showPlants());
-		System.out.println(controller.showEvents());
+		if (controller.showWetlands().equals("") ) {
+			
+			System.out.println("There aren't any wetlands registered.");
+			
+		} else {
+			
+			System.out.println(controller.showWetlands());
+			System.out.println(controller.showAnimals());
+			System.out.println(controller.showPlants());	
+			
+		}
+		
+		
 		
 	}
 	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method shows the total maintenance of a wetland in a year 
+	 *pre: Object wetland should be created and global variables must be inicialiced
+	 *pos: Shows the method maintenance at Controller 
+	 * </pre>
+	 */
+	
 	public static void maintenance () {
 		
-		System.out.println("Type the id of the wetland");
-		String wetlandID = sc.next();
-		
-		System.out.println("Type the year");
-		int year = sc.nextInt();
-		
-		String msg = controller.maintenance(wetlandID, year);
-		
-		System.out.println(msg);
+		if (controller.showWetlands().equals("") ) {
+			
+			System.out.println("There aren't any wetlands registered.");
+			
+		} else {
+			
+			System.out.println("Type the id of the wetland");
+			String wetlandID = sc.next();
+			
+			System.out.println("Type the year");
+			int year = sc.nextInt();
+			
+			String msg = controller.maintenance(wetlandID, year);
+			
+			System.out.println(msg);
+			
+		}
 		
 	}
+	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method shows the wetland who have a specie given for the user 
+	 *pre: Object wetland should be created and global variables must be inicialiced
+	 *pos: shows the method wetBySpecie at Controller
+	 * </pre>
+	 */
+	
+	public static void check () {
+		
+		if (controller.showWetlands().equals("") ) {
+			
+			System.out.println("There aren't any wetlands registered.");
+			
+		} else {
+			
+			System.out.println("Type the name of the Specie");
+			String checkSpecie = sc.next();
+			
+			String msg = controller.wetBySpecie(checkSpecie);
+			
+			System.out.println(msg);
+			
+			
+		}
+		
+		
+	}
+	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method shows the object wetland who has the most fauna objects
+	 *pre: Object wetland should be created and global variables must be inicialiced
+	 *pos: Shows the method moreFaunaControll at Controll
+	 * </pre>
+	 */
+	
+	public static void moreFauna () {
+		
+		if (controller.showWetlands().equals("") ) {
+			
+			System.out.println("There aren't any wetlands registered.");
+			
+		} else if (controller.moreFaunaControll().equals("")){
+			
+			System.out.println("There's no Animals");
+			
+		} else if (controller.moreFaunaControll() != "") {
+			
+			String msg = controller.moreFaunaControll();
+			
+			System.out.println(msg);
+			
+		}
+		
+	}
+	
+	/**
+	 * <pre>
+	 *<strong>Descripcion:</strong> This method shows the object wetland who has the fewest flora objects
+	 pre: Object wetland should be created and global variables must be inicialiced
+	 pos: Show thec method lessFloraControll at Controll
+	 * </pre>
+	 */
+	
+	public static void lessFlora () {
+		
+		if (controller.showWetlands().equals("") ) {
+			
+			System.out.println("There aren't any wetlands registered.");
+			
+		} else  if (controller.lessFloraControll().equals("")) { 
+			
+			System.out.println("There's no Plants");
+			
+		} else if (controller.lessFloraControll() != ("")) {
+			
+			String msg = controller.lessFloraControll();
+			
+			System.out.println(msg);
+			
+			
+		}
+		
+	}
+	
 	
 }
