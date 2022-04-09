@@ -83,7 +83,7 @@ public class Flora {
 			migShow = "No";
 			
 		}
-		return "Species Name: " + specieName + ", cientific name: " + cientificName + ", migration: " + migShow + " Type: "
+		return "Species: Name" + specieName + ", cientific name: " + cientificName + ", migration: " + migShow + " Type: "
 				+ floraType + ", wetland ID:" + wetlandID;
 	}
 	

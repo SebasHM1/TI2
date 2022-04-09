@@ -274,7 +274,7 @@ public class WetLand {
 			
 		}
 		
-		return "WetLand Name: " + wetName + " Area: " + wetArea + ", Type: " + showUbi + ", wetland ID: " + wetlandID + ", photo url:"
+		return "\nWetLand Name: " + wetName + " Area: " + wetArea + ", Type: " + showUbi + ", wetland ID: " + wetlandID + ", photo url:"
 				+ wetPhoto + ", place: " + place + ", private: " + showPriv + ", protected: " + showProt + ", goal: " + goalPercentage;
 	}
 	
@@ -380,7 +380,7 @@ public class WetLand {
 	
 	public String searchSpecie (String checkSpecie) {
 		
-		String msg = "";
+		String msg = "The wetlands dont have that specie";
 		boolean fin = false;
 		
 		for (int i = 0; i < animals.length && !fin; i ++ ) {
@@ -391,7 +391,13 @@ public class WetLand {
 					
 					msg = "\nThe wetland: " + wetName + " ID: "+ wetlandID + " contains the specie: " + checkSpecie;
 					fin = true;
-				}
+					
+				} else if (checkSpecie.equals(plants[i].getSpecieName())) {
+					
+					msg = "\nThe wetland: " + wetName + " ID: "+ wetlandID + " contains the specie: " + checkSpecie;
+					fin = true;
+					
+				} 
 				
 			}
 			
@@ -427,6 +433,14 @@ public class WetLand {
 		
 	}
 	
+	/**
+	 <pre>
+	 *<strong>Description:</strong> This method search at the wetland how many flora objects did it have
+	 *pre: object wetlands have to be inicialiced and cant be null
+	 * </pre>	 
+	 *@return counter int have the amount of flora objects 
+	*/
+	
 	public int lessFloraWetland () {
 		
 		int counter = 0;
@@ -436,6 +450,8 @@ public class WetLand {
 			if (plants[i] != null) {
 				
 				counter ++;
+				
+				
 				
 			} 
 			

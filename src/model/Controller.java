@@ -159,6 +159,7 @@ public class Controller {
 				if (wetlandID.equals(wetlands[i].getWetlandID())) {
 					
 					msg = wetlands[i].addFauna(specieName, cientificName, mig, faunaType, wetlandID);
+					fin = true;
 					
 				} else {
 					
@@ -202,6 +203,7 @@ public class Controller {
 				if (wetlandID.equals(wetlands[i].getWetlandID())) {
 					
 					msg = wetlands[i].addFlora(specieName, cientificName, mig, floraType, wetlandID);
+					fin = true;
 					
 				} else {
 					
@@ -246,6 +248,7 @@ public class Controller {
 				if (wetlandID.equals(wetlands[i].getWetlandID())) {
 					
 					msg = wetlands[i].addEvent(hostName, value, description, year, month, day, eventType, wetlandID);
+					fin = true;
 					
 				} else {
 					
@@ -431,7 +434,7 @@ public class Controller {
 	public String moreFaunaControll () {
 		
 		String msg = "";
-		int actualCounter = 0;
+		int actualCounter = 1;
 		int newCounter = 0;
 		
 		for (int i = 0; i < wetlands.length; i++) {
@@ -440,14 +443,30 @@ public class Controller {
 				
 				newCounter = wetlands[i].moreFaunaWetland();
 				
-				if (newCounter > actualCounter) {
+				if (newCounter >= actualCounter) {
 					
-					newCounter = actualCounter;
-					msg = wetlands[i].toString();
+					msg += wetlands[i].toString();
 					
-				}
+					if (newCounter > actualCounter) {
+					
+						newCounter = actualCounter;
+						msg = wetlands[i].toString();
+						
+					}
+					
+				} 
+				
+				
 				
 			}
+			
+			
+			
+		}
+		
+		if (msg == "") {
+			
+			msg = "there is no fauna objects";
 			
 		}
 		
@@ -466,7 +485,7 @@ public class Controller {
 	public String lessFloraControll () {
 		
 		String msg = ""; 
-		int actualCounter = 21;
+		int actualCounter = 0;
 		int newCounter = 0;
 		
 		for (int i = 0; i < wetlands.length; i ++ ) {
@@ -474,15 +493,29 @@ public class Controller {
 			if (wetlands[i] != null) {
 				
 				newCounter = wetlands[i].lessFloraWetland();
-						
-				if (newCounter < actualCounter) {
+				
+				if (newCounter <= actualCounter) {
 					
-					newCounter = actualCounter;
-					msg = wetlands[i].toString();
+					msg += wetlands[i].toString();
+					
+					if (newCounter < actualCounter) {
+					
+						newCounter = actualCounter;
+						msg = wetlands[i].toString();
+						
+					}
 					
 				}
 				
+				
+				
 			}
+			
+		}
+		
+		if (msg == "") {
+			
+			msg = "there is no flora objects";
 			
 		}
 		

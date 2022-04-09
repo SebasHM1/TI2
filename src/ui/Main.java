@@ -170,6 +170,13 @@ public class Main {
 		
 		Double goalPercentage = sc.nextDouble();
 		
+		while (goalPercentage > 100 || goalPercentage < 0) {
+			
+			System.out.println("You must type a valid option");
+			goalPercentage = sc.nextDouble();
+			
+		} 
+		
 		while (!finCompPriv) {
 			
 			System.out.println("Type the 1 for private or 2 for public");
@@ -312,7 +319,7 @@ public class Main {
 				
 			}
 			
-			System.out.println("Type the Specie\n1) Bird\n 2)Mamal\n3) Acuatic");
+			System.out.println("Type the Specie\n1) Bird\n2) Mamal\n3) Acuatic");
 			
 			int faunaType = sc.nextInt();
 			
@@ -362,7 +369,7 @@ public class Main {
 			
 			while (!migComp) {
 				
-				System.out.println("If the wetland is protected, type 1, if it is not, type 2");
+				System.out.println("If is a migratory specie, type 1, if it is not, type 2");
 			
 				int migCompNum = sc.nextInt();
 				
@@ -384,7 +391,7 @@ public class Main {
 				
 			}
 			
-			System.out.println("Type the Specie\n1) Acuatic\n 2) Ground");
+			System.out.println("Type the Specie\n1) Acuatic\n2) Ground");
 			
 			int floraType = sc.nextInt();
 			
